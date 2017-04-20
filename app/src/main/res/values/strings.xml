@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Example app</string>
     <string name="btn_click_here">Click here</string>
+    <string name="btn_loading">Loading..</string>
+    <string name="btn_error">Error..</string>
+    <string name="btn_finished">Finished..</string>
 </resources>
