@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.agdu.exampleapp.R
+import com.example.agdu.exampleapp.common.inflate
 import com.jakewharton.rxbinding2.view.RxView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import kotlinx.android.synthetic.main.fragment_main.*
@@ -31,8 +32,7 @@ class MainFragment: Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = LayoutInflater.from(context).inflate(R.layout.fragment_main, container, false)
-        return view
+        return container!!.inflate(R.layout.fragment_main)!!
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {

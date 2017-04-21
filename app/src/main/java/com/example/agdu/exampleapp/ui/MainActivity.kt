@@ -21,7 +21,6 @@ import java.util.concurrent.TimeUnit
 class MainActivity : AppCompatActivity(), RvAdapter.onViewClickedListener {
     override fun onItemClicked(pos: Int) {
         changeFragment(MainFragment.newInstance(pos, list[pos]))
-        showFragment()
     }
 
     val rvAdapter = RvAdapter(this)
@@ -86,13 +85,16 @@ class MainActivity : AppCompatActivity(), RvAdapter.onViewClickedListener {
     }
 
     fun changeFragment(f: Fragment) {
-        val ft = supportFragmentManager.beginTransaction()
-        ft.replace(R.id.activity_base_content, f)
-        ft.addToBackStack(null)
-        ft.commit()
+       supportFragmentManager
+               .beginTransaction()
+               .replace(R.id.activity_base_content, f)
+               .addToBackStack(null)
+               .commit()
+        showFragment()
     }
 
     fun showFragment(isVisible: Boolean=true){
+        //todo: fix, refactor, make it better?
         activity_base_content.visibility = if(isVisible) View.VISIBLE else View.GONE
         rv_list.visibility = if(isVisible) View.GONE else View.VISIBLE
         btn_click.visibility = if(isVisible) View.GONE else View.VISIBLE

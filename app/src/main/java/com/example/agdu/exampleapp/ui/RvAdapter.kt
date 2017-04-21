@@ -22,8 +22,8 @@ class RvAdapter(val actionCallback: onViewClickedListener): RecyclerView.Adapter
         return RvViewHolder(parent!!.inflate(R.layout.item_display_name)!!)
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
-        (holder as? RvViewHolder)?.bind(items[position])
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        (holder as RvViewHolder).bind(items[position])
     }
 
     override fun getItemCount(): Int {
