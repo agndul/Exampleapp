@@ -1,5 +1,7 @@
 package com.example.agdu.exampleapp.ui
 
+import android.app.Activity
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -17,9 +19,14 @@ import java.util.concurrent.TimeUnit
  */
 class MainFragment: Fragment() {
 
+    protected lateinit var mainActivity: MainActivity
+    val param = "list_position"
+
     companion object{
         const val LIST_POSITION = "list_position"
         const val LIST_VALUE = "list_value"
+        const val TRANSACTION_FILTER_REQUEST = 1105
+
 
         fun newInstance(pos: Int, value: String): MainFragment {
             val fragment: MainFragment = MainFragment()
@@ -30,6 +37,13 @@ class MainFragment: Fragment() {
             return fragment
         }
     }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        mainActivity = activity as MainActivity
+
+    }
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return container!!.inflate(R.layout.fragment_main)!!
@@ -45,6 +59,21 @@ class MainFragment: Fragment() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe{
                     progressBar.visibility = View.GONE
+                    var intent = Intent(mainActivity, MainActivity::class.java)
+                    intent.putExtra("date", param)
+                    mainActivity.setResult(MainFragment.TRANSACTION_FILTER_REQUEST, intent)
+                    mainActivity.finish()
                 }
     }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        when (requestCode) {
+            TRANSACTION_FILTER_REQUEST -> {
+                mainActivity.showFilteredList(data)
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data)
+    }
+
 }

@@ -1,4 +1,4 @@
-package com.example.agdu.exampleapp.api.pojo
+package com.example.agdu.exampleapp.api.pojo.stack
 
 import io.reactivex.Observable
 import retrofit2.http.GET

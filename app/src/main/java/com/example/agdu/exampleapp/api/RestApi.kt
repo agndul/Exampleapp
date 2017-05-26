@@ -12,8 +12,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 
 class RestApi {
-    companion object {
 
+    companion object {
         val gson: Gson = GsonBuilder().create()
         var retrofit : Retrofit = Retrofit.Builder()
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
